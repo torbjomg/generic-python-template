@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.1](https://github.com/torbjomg/generic-python-template/compare/v0.2.0...v0.2.1) (2024-05-10)
+
+
+### Bug Fixes
+
+* name and unused file ([851e424](https://github.com/torbjomg/generic-python-template/commit/851e4241b13e0ce3566075a7d2bbb248cff458f4))
+* release-please trigger ([394a9a1](https://github.com/torbjomg/generic-python-template/commit/394a9a10c2fa3ecfc909d5d5ce9de86404cc349e))
+* trigger build ([56730bc](https://github.com/torbjomg/generic-python-template/commit/56730bc6d8f0e4a222666b29f32210ca22ddc26e))
+
 ## [0.2.0](https://github.com/torbjomg/generic-python-template/compare/v0.1.2...v0.2.0) (2024-05-10)
 
 
