@@ -31,14 +31,19 @@ jobs:
         token: ${{ secrets.RELEASE_PLEASE_PAT }}
         release-type: python
         config-file: release-please-config.json
+    - name: Extract version from PR title
+      id: extract_version
+      run: |
+        VERSION=$(echo "${{ steps.release_pr.outputs.pr_title }}" | grep -oP 'v\K.*')
+        echo "::set-output name=version::$VERSION"
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_PAT }}
       with:
-        tag_name: ${{ steps.release_pr.outputs.tag_name }}
-        release_name: Release ${{ steps.release_pr.outputs.tag_name }}
+        tag_name: ${{ steps.extract_version.outputs.version }}
+        release_name: Release ${{ steps.extract_version.outputs.version }}
         draft: false
         prerelease: false
     - name: Upload Release Asset
