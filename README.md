@@ -9,7 +9,6 @@ The following tools are used for development and building:
 - **pre-commit** - [pre-commit](https://pre-commit.com/), see config in `.pre-commit-config.yaml`, currently only `ruff` for formatting and linting.
 - **Release** - [release-please](https://github.com/googleapis/release-please)
 
-
 ### Virtual environment
 `uv` is a fast package installer and a drop-in replacement for `pip`. Should be installed on your system first using this command: 
 
@@ -43,7 +42,26 @@ dependencies = [
 And pinning requirements to `requirements.txt` on release with 
 ```bash
 uv pip freeze > requirements.txt
-````
+```
+
+### First steps
+After creating a new repo based on this template there are a few steps to take before starting development of your project:
+1. Update `pyproject.toml` with project name, description, author. Optionally define dependencies.
+2. Rename the folder `src/my_project` to the same as your project name (with underscores instead of hyphens)
+3. Replace the placeholder `src/my_project/script.py` and references to it in `src/my_project/__main__.py`
+
+The `__main__.py` is the app entry point when running the project from `python -m`. You can test this by first building your project and installing from the `.whl` file (assuming you have followed the above steps and are in your virtual environment)
+```bash
+(venv) python -m build --outdir ./dist/
+(venv) uv pip install ./dist/*.whl
+(venv) python -m my_project # replace this with your project name if you've changed it
+```
+
 
 ### CICD
 Set up for building and publishing on github using [release-please](https://github.com/googleapis/release-please), meaning [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) are required.
+
+#### Workflows
+- **ci.yml** - runs pytest. Required check for the following workflows.
+- **release-please.yml** - creates the release PR, handles semantic versioning.
+- **publish-release.yml** - builds the project and publishes release to github releases.
