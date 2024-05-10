@@ -25,12 +25,13 @@ jobs:
         python -m pip install uv
         uv venv
         uv pip install -e '.[test]'
+        uv pip install build
 
     - name: Activate virtualenv
       run: |
         . .venv/bin/activate
         echo PATH=$PATH >> $GITHUB_ENV
-        
+
     - name: Run tests with pytest
       run: pytest
 
