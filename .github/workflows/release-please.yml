@@ -15,6 +15,6 @@ jobs:
     - uses: actions/checkout@v4
     - uses: GoogleCloudPlatform/release-please-action@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.RELEASE_PLEASE_PAT }}
         release-type: python
         config-file: release-please-config.json
