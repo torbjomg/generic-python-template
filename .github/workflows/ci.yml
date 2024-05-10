@@ -34,10 +34,3 @@ jobs:
 
     - name: Run tests with pytest
       run: pytest
-
-    - name: Activate virtualenv for build
-      run: |
-        . .venv/bin/activate
-
-    - name: Build package
-      run: python -m build --outdir dist/
