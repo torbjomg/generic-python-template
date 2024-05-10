@@ -23,7 +23,7 @@ jobs:
         pip install -r requirements.txt
         pip install build
     - name: Build project
-      run: python -m build --output-dir dist/
+      run: python -m build --outdir dist/
     - name: Create Release
       id: create_release
       uses: GoogleCloudPlatform/release-please-action@v4
