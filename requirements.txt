@@ -1,0 +1,2 @@
+# install requirements from pyproject.toml when developing (ie uv pip install -e '.[dev]')
+# put pinned versions in this file (uv pip freeze > requirements.txt)

@@ -1,7 +1,7 @@
 [project]
-name = "<PROJECT NAME>"
+name = "project-name"
 version = "0.0.1"
-description = "API for cloning snowflake environments"
+description = "<PROJECT DESCRIPTION>"
 authors = [{ name = "Torbjørn Gulbrandsen", email = "torbjorngul@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.11"
@@ -9,8 +9,13 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-# OPTIONAL FOR BUILD TOOLS
-# dependencies = []
+
+# put unpinned dependencies here, install with uv pip install -e . , optional deps uv pip install '-e .[dev/test]'
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "pre-commit"]
+test = ["pytest"]
 
 [build-system]
 requires = ["setuptools", "wheel"]

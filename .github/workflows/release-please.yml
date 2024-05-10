@@ -4,18 +4,15 @@ on:
   push:
     branches:
       - main
-
-permissions:
-    contents: write
-    pull-requests: write
+  pull_request:
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: 'python'  # Change this according to your project type, e.g., 'python', 'go'
-          
-      
+    - uses: actions/checkout@v4
+    - uses: GoogleCloudPlatform/release-please-action@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        release-type: python
+        config-file: release-please-config.json
