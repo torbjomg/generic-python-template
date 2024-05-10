@@ -1,10 +1,10 @@
 name: Release Please
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-  pull_request:
+
 permissions:
   contents: write
   actions: write
