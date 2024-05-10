@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/torbjomg/generic-python-template/compare/v0.1.1...v0.1.2) (2024-05-10)
+
+
+### Bug Fixes
+
+* simplify release ([37d392c](https://github.com/torbjomg/generic-python-template/commit/37d392cd1a8a77918d3d4fc620bc3a4504c89ac8))
+
 ## [0.1.1](https://github.com/torbjomg/generic-python-template/compare/v0.1.0...v0.1.1) (2024-05-10)
 
 
