@@ -26,26 +26,22 @@ jobs:
         token: ${{ secrets.RELEASE_PLEASE_PAT }}
         release-type: python
         config-file: release-please-config.json
-
-    - name: Extract version
-      id: extract_version
-      run: |
-        echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-        echo "Ref name from GITHUB_REF: $GITHUB_REF"
-        echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
   
     - name: Update pyproject version
+      if: ${{ steps.release.outputs.release_created }}
       run: |
-        echo ${{ steps.extract_version.outputs.tag }}
         pip install toml
-        python -c "import toml; pyproject = toml.load('pyproject.toml'); pyproject['project']['version'] = '${{ steps.extract_version.outputs.tag }}'.strip()[1:]; toml.dump(pyproject, open('pyproject.toml', 'w'))"
+        python -c "import toml; pyproject = toml.load('pyproject.toml'); pyproject['project']['version'] = '${{ steps.release.outputs.tag_name }}'.strip()[1:]; toml.dump(pyproject, open('pyproject.toml', 'w'))"
+
     - name: Install dependencies
+      if: ${{ steps.release.outputs.release_created }}
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install build
 
     - name: Build project
+      if: ${{ steps.release.outputs.release_created }}
       run: python -m build --outdir dist/
 
     - name: Upload Release Artifact
