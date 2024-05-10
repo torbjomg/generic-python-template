@@ -56,6 +56,7 @@ The `__main__.py` is the app entry point when running the project from `python -
 (venv) python -m build --outdir ./dist/
 (venv) uv pip install ./dist/*.whl
 (venv) python -m my_project # replace this with your project name if you've changed it
+# Hello from my_project v0.1.0!
 ```
 
 
