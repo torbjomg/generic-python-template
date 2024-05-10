@@ -31,10 +31,17 @@ jobs:
         token: ${{ secrets.RELEASE_PLEASE_PAT }}
         release-type: python
         config-file: release-please-config.json
+    - name: Get PR title
+      id: get_pr_title
+      run: |
+        PR_TITLE=$(gh pr view https://github.com/${{ github.repository }}/pull/${{ steps.release_pr.outputs.pull_request_number }} --json title -q '.title')
+        echo "::set-output name=pr_title::$PR_TITLE"
+      env:
+        GH_TOKEN: ${{ secrets.RELEASE_PLEASE_PAT }}
     - name: Extract version from PR title
       id: extract_version
       run: |
-        VERSION=$(echo "${{ steps.release_pr.outputs.pr_title }}" | grep -oP 'v\K.*')
+        VERSION=$(echo "${{ steps.get_pr_title.outputs.pr_title }}" | grep -oP 'v\K.*')
         echo "::set-output name=version::$VERSION"
     - name: Create GitHub Release
       id: create_release
