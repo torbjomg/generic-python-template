@@ -49,6 +49,7 @@ After creating a new repo based on this template there are a few steps to take b
 1. Update `pyproject.toml` with project name, description, author. Optionally define dependencies.
 2. Rename the folder `src/my_project` to the same as your project name (with underscores instead of hyphens)
 3. Replace the placeholder `src/my_project/script.py` and references to it in `src/my_project/__main__.py`
+4. If you want to use release-please, set up a PAT for this repo and name it `RELEASE_PLEASE_PAT`
 
 The `__main__.py` is the app entry point when running the project from `python -m`. You can test this by first building your project and installing from the `.whl` file (assuming you have followed the above steps and are in your virtual environment)
 ```bash
