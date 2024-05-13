@@ -22,8 +22,8 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
-# OPTIONAL FOR TEST IMPORTS
-# pythonpath = ["./src"]
+# Add the src directory to the python path, needed for the tests to find the modules
+pythonpath = ["./src"]
 filterwarnings = [
     "ignore:.*urllib3.contrib.pyopenssl.*:DeprecationWarning",
     "ignore::DeprecationWarning:pkg_resources",
@@ -54,7 +54,7 @@ exclude = [
     "node_modules",
     "venv",
 ]
-target-version = "py311"
+target-version = "py312"
 line-length = 119
 [tool.ruff.lint]
 select = [
