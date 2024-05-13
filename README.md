@@ -9,6 +9,28 @@ The following tools are used for development and building:
 - **pre-commit** - [pre-commit](https://pre-commit.com/), see config in `.pre-commit-config.yaml`, currently only `ruff` for formatting and linting.
 - **Release** - [release-please](https://github.com/googleapis/release-please)
 
+## Project Structure
+
+This project follows a standard Python project structure, which is important for building and distributing the project. Here's a brief overview:
+
+- `src/`: This is where the source code of the project resides. The `src/` directory contains a subdirectory that should be renamed to your project name. This subdirectory will contain your Python modules and packages.
+
+    - `my_project/`: This is the main package of your project. Rename this to your project name. It contains the main script (`script.py`) and the main entry point (`__main__.py`).
+
+        - `script.py`: This is a placeholder script. Replace this with your own code.
+
+        - `__main__.py`: This is the entry point when running the project with `python -m`. It currently references `script.py`, so make sure to update this if you replace `script.py`.
+
+- `tests/`: This directory contains test files. The template only contains a dummy test.
+
+- `pyproject.toml`: This file contains metadata about the project and its dependencies. Update this with your project name, description, author, and dependencies.
+
+- `requirements.txt`: This file should contain the pinned versions of your dependencies. It's recommended to keep unpinned requirements in `pyproject.toml` and pin them to `requirements.txt` on release.
+
+- `.github/workflows/`: This directory contains GitHub Actions workflows for continuous integration and deployment. The workflows handle testing (`ci.yml`), release creation (`release-please.yml`).
+
+Build your project with `python -m build --outdir ./dist/` and install it from the `.whl` file in your virtual environment. You can then run your project with `python -m my_project`, replacing `my_project` with your project name.
+
 ### Virtual environment
 `uv` is a fast package installer and a drop-in replacement for `pip`. Should be installed on your system first using this command: 
 
@@ -50,6 +72,8 @@ After creating a new repo based on this template there are a few steps to take b
 2. Rename the folder `src/my_project` to the same as your project name (with underscores instead of hyphens)
 3. Replace the placeholder `src/my_project/script.py` and references to it in `src/my_project/__main__.py`
 4. If you want to use release-please, set up a PAT for this repo and name it `RELEASE_PLEASE_PAT`
+5. Verify pre-commit works by running `pre-commit run --all-files`. `ruff` and `ruff-format` should run and pass.
+   
 
 The `__main__.py` is the app entry point when running the project from `python -m`. You can test this by first building your project and installing from the `.whl` file (assuming you have followed the above steps and are in your virtual environment)
 ```bash
@@ -58,7 +82,6 @@ The `__main__.py` is the app entry point when running the project from `python -
 (venv) python -m my_project # replace this with your project name if you've changed it
 # Hello from my_project v0.1.0!
 ```
-
 
 ### CICD
 Set up for building and publishing on github using [release-please](https://github.com/googleapis/release-please), meaning [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) are required.
