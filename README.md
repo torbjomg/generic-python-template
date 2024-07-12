@@ -83,6 +83,46 @@ The `__main__.py` is the app entry point when running the project from `python -
 # Hello from my_project v0.1.0!
 ```
 
+### Tests
+The project has some dummy tests to check that you can correctly import the source code. To run, first the test requirements need to be installed: (the test requirements is already included in the dev requirements, so this is not required if you have installed dev requirements)
+```bash
+uv pip install -e '.[test]'
+```
+And run the tests:
+```bash
+pytest tests/
+# 2 tests should run and pass
+```
+
+### Docker
+This project comes with a Dockerfile and docker-compose templates for run/test/dev. Requires docker tp be installed on your system. To build the image
+```bash
+docker build -t generic-python-template .
+```
+And to run the built image
+```bash
+docker run generic-python-template
+# Hello from my_project v0.1.0!
+```
+Note that the Dockerfile is a multi-stage build which first builds the project whl, then installs and runs it in the run stage. The final `CMD` statement will need to be updated with your project name.
+
+Also note that the `Dockerfile` currently installs requirements from the `pyproject.toml` file, not the `requirements.txt`.
+
+#### Docker Compose
+There is also a docker compose file where you can add additional services (currently template just runs the base Dockerfile), and a `docker-compose.test.yaml` which can be used to run tests, either locally or in a CICD pipeline.
+
+To run docker compose:
+```bash
+docker compose up --build
+```
+
+To run the test docker compose:
+```bash
+docker compose -f docker-compose.test.yaml.up --build
+```
+
+Note that the docker-compose.test.yaml installs the base image and mounts the test files. Test files will also need to be available in CICD pipeline.
+
 ### CICD
 Set up for building and publishing on github using [release-please](https://github.com/googleapis/release-please), meaning [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) are required.
 

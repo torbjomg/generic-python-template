@@ -1,0 +1,12 @@
+services:
+  test:
+    build: .
+    image: my_project_image
+    container_name: my_project_test_container
+    working_dir: /app
+    volumes:
+      - ./tests:/app/tests
+    command: >
+      sh -c "
+      pip install pytest &&
+      pytest /app/tests/"
