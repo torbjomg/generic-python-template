@@ -95,7 +95,7 @@ pytest tests/
 ```
 
 ### Docker
-This project comes with a Dockerfile and docker-compose templates for run/test/dev. Requires docker tp be installed on your system. To build the image
+This project comes with a Dockerfile and docker-compose templates for run/test/dev. Requires docker to be installed on your system. To build the image
 ```bash
 docker build -t generic-python-template .
 ```
@@ -118,7 +118,7 @@ docker compose up --build
 
 To run the test docker compose:
 ```bash
-docker compose -f docker-compose.test.yaml.up --build
+docker compose -f docker-compose.test.yaml up --build
 ```
 
 Note that the docker-compose.test.yaml installs the base image and mounts the test files. Test files will also need to be available in CICD pipeline.
