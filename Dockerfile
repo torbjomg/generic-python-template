@@ -20,8 +20,8 @@ FROM python:3.12-slim-bullseye
 WORKDIR /app
 
 COPY --from=build /app/dist/*.whl /app/
-COPY --from=build /bin/uv /bin/uv
 
-RUN uv pip install --system /app/*.whl
+RUN --mount=from=build,source=/bin/uv,target=/bin/uv \
+    uv pip install --system /app/*.whl
 
 CMD ["python", "-m", "my_project"]
