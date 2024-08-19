@@ -1,18 +1,21 @@
 # Build stage
-FROM python:3.12-slim as build
+FROM python:3.12-slim-bullseye as build
 
 WORKDIR /app
 
 COPY pyproject.toml /app/
-RUN pip install --upgrade pip setuptools wheel build \
-    && pip install -e .
+
+COPY --from=ghcr.io/astral-sh/uv:0.2.37 /uv /bin/uv
+
+RUN uv pip install --system --no-cache --upgrade pip setuptools wheel build \
+    && uv pip install --system --no-cache -e .
 
 COPY ./src/ /app/
 
 RUN python -m build --outdir ./dist/
 
 # Run stage
-FROM python:3.12-slim
+FROM python:3.12-slim-bullseye
 
 WORKDIR /app
 
