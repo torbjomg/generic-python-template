@@ -37,6 +37,23 @@ Build your project with `python -m build --outdir ./dist/` and install it from t
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
+
+#### Option 1: use uv project management
+uv can now be used as a package manager (replacing tools like poetry). To initialize this project run 
+```bash
+uv sync --all-extras
+```
+and uv will create a virtual environment in `.venv`
+
+To add packages run 
+```bash
+uv add <package-name> # adds the package to dependencies
+uv add --dev <package-name> # adds to dev dependencies
+```
+
+See [uv docs](https://docs.astral.sh/uv/concepts/projects/) for more details.
+
+#### Option 2: manage the virtual env yourself
 Create a virtual env and activate it (when in this root folder)
 
 ```bash
