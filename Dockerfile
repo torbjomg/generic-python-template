@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY pyproject.toml /app/
 
-COPY --from=ghcr.io/astral-sh/uv:0.2.37 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.4.9 /uv /bin/uv
 
 RUN uv pip install --system --no-cache --upgrade pip setuptools wheel build \
     && uv pip install --system --no-cache -e .
